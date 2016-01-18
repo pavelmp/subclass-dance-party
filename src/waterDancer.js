@@ -1,12 +1,13 @@
-var BlinkyDancer = function(top, left, timeBetweenSteps) {
+var WaterDancer = function(top, left, timeBetweenSteps) {
   Dancer.call(this, top, left, timeBetweenSteps);
+  
 };
 
-BlinkyDancer.prototype = Object.create(Dancer.prototype);
-BlinkyDancer.prototype.constructor = BlinkyDancer;
+WaterDancer.prototype = Object.create(Dancer.prototype);
+WaterDancer.prototype.constructor = WaterDancer;
 
 
-BlinkyDancer.prototype.step = function() {
+WaterDancer.prototype.step = function() {
     Dancer.prototype.step.call(this);
     // toggle() is a jQuery method to show/hide the <span> tag.
     // See http://api.jquery.com/category/effects/ for this and
