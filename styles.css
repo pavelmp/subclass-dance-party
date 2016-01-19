@@ -1,12 +1,11 @@
 body, html{
-  /*background-image: url("/images/bg-beach-cartoon.jpg");*/
   height:100%;
 }
 
-
-body{
+body {
+  background: url("images/bg-beach-cartoon.jpg");
+  background-size: cover;
   margin: 0px;
-  /*background-color:#444;*/
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -28,10 +27,7 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
-
-body {
-  background: url("images/bg-beach-cartoon.jpg");
-  height:100%;
-  background-size: cover;
-
+.blinky {
+  background-image: url("images/stitch-happy.gif");
 }
+
