@@ -13,7 +13,7 @@ describe("WaterDancer", function() {
     expect(waterDancer.$node).to.be.an.instanceof(jQuery);
   });
 
-  it("should have a step function that makes its node blink", function() {
+    it("should have a step function that makes its node blink", function() {
     sinon.spy(waterDancer.$node, 'toggle');
     waterDancer.step();
     expect(waterDancer.$node.toggle.called).to.be.true;
