@@ -3,8 +3,10 @@ body, html{
 }
 
 body {
-  background: url("images/bg-beach-cartoon.jpg");
+  background: url("images/bg-beach-cartoon2.jpg");
   background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   margin: 0px;
   font-size: 18px;
 }
@@ -40,4 +42,10 @@ body, a:link, a:visited, a:active{
   background-size: 100%;
   width: 100px;
   height: 155px;
+  
+}
+
+.flip {
+  transform: scaleX(-1);
+  filter: FlipH;
 }
