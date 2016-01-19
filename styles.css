@@ -45,6 +45,14 @@ body, a:link, a:visited, a:active{
   
 }
 
+.water {
+  background: url(images/anime-whale.gif);
+  background-size: 100%;
+  width: 100px;
+  height: 155px;
+  
+}
+
 .flip {
   transform: scaleX(-1);
   filter: FlipH;

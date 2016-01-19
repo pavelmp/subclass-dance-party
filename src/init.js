@@ -20,13 +20,22 @@ $(document).ready(function() {
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
+    // if dancerMakerFunction is window.water
+    // if(dancerMakerFunction = window['water']){
+      // put only one image on screen in the water, in the center
+    //   var dancer = new dancerMakerFunction(
+    //     Math.min($("body").height()%2,$("body").height() * Math.random()),
+    //     Math.min($("body").width()%2,$("body").width() * Math.random()), 0
+    //   );
+    // } else {
+      // otherwise make a dancer with a random position
+      var dancer = new dancerMakerFunction(
+        Math.min($("body").height()-155,$("body").height() * Math.random()),
+        Math.min($("body").width()-100,$("body").width() * Math.random()),
+        Math.random() * 1000
+      );
+    // }
 
-    var dancer = new dancerMakerFunction(
-      Math.min($("body").height()-155,$("body").height() * Math.random()),
-      Math.min($("body").width()-100,$("body").width() * Math.random()),
-      Math.random() * 1000
-    );
     $('body').append(dancer.$node);
 
     window.dancers.push(dancer);
@@ -41,6 +50,16 @@ $(".lineUpButton").on("click", function(event) {
   $(document).on("click", "span",function(event) {
     $(this).toggleClass("flip");
   });
+
+  $( document ).click(function() {
+  $( ".water" ).animate({
+    opacity: 0.25,
+    top: "+=100",
+    height: "toggle"
+  }, 5000, function() {
+    // Animation complete.
+  });
+});
 
 
 });
