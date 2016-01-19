@@ -41,9 +41,20 @@ $(document).ready(function() {
     window.dancers.push(dancer);
   });
 
-$(".lineUpButton").on("click", function(event) {
+$(document).on("click",".lineUpButton", function(event) {
+    var howMany = window.dancers.length;
+    var currentAngle = 0;
+
+    var angleStep = 360/howMany;
+    var radius = Math.min($(window).height()/2-100,$(window).width()/2-100,0.8 * 100 / (2*Math.PI) * howMany);
+    var centerX = $(window).height()/2;
+    var centerY = $(window).width()/2;
+
     for(var i = 0; i < window.dancers.length; i++) {
-      window.dancers[i].lineUp();
+      var x = centerX + radius * Math.sin(currentAngle * Math.PI/180);
+      var y = centerY + radius * Math.cos(currentAngle * Math.PI/180);
+      window.dancers[i].setPosition(x,y);
+      currentAngle+=angleStep;
     }
   });
 
