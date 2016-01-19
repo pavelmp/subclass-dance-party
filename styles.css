@@ -48,8 +48,8 @@ body, a:link, a:visited, a:active{
 .water {
   background: url(images/anime-whale.gif);
   background-size: 100%;
-  width: 100px;
-  height: 155px;
+  width: 200px;
+  height: 0px;
   
 }
 

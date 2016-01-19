@@ -19,22 +19,21 @@ $(document).ready(function() {
 
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
-
     // if dancerMakerFunction is window.water
-    // if(dancerMakerFunction = window['water']){
+    if(dancerMakerFunctionName === 'WaterDancer'){
       // put only one image on screen in the water, in the center
-    //   var dancer = new dancerMakerFunction(
-    //     Math.min($("body").height()%2,$("body").height() * Math.random()),
-    //     Math.min($("body").width()%2,$("body").width() * Math.random()), 0
-    //   );
-    // } else {
+      var dancer = new dancerMakerFunction(
+        $("body").height()/2-160,
+        $("body").width()/2-200, 0
+      );
+    } else {
       // otherwise make a dancer with a random position
       var dancer = new dancerMakerFunction(
         Math.min($("body").height()-155,$("body").height() * Math.random()),
         Math.min($("body").width()-100,$("body").width() * Math.random()),
         Math.random() * 1000
       );
-    // }
+    }
 
     $('body').append(dancer.$node);
 
@@ -42,18 +41,21 @@ $(document).ready(function() {
   });
 
 $(document).on("click",".lineUpButton", function(event) {
-    var howMany = window.dancers.length;
+    console.log(window.dancers[0] instanceof WaterDancer);
+    // loop through window.dancer and exclude WaterDancer
+    var lineUpDancers = window.dancers.filter(function(v){return !(v instanceof WaterDancer)});
+    var howMany = lineUpDancers.length;
     var currentAngle = 0;
 
     var angleStep = 360/howMany;
-    var radius = Math.min($(window).height()/2-100,$(window).width()/2-100,0.8 * 100 / (2*Math.PI) * howMany);
-    var centerX = $(window).height()/2;
-    var centerY = $(window).width()/2;
+    var radius = Math.min($(window).height()*0.35-100,$(window).width()/2-100,0.8 * 100 / (2*Math.PI) * howMany);
+    var centerX = $(window).height()*0.55;
+    var centerY = $(window).width()*0.15;
 
-    for(var i = 0; i < window.dancers.length; i++) {
+    for(var i = 0; i < lineUpDancers.length; i++) {
       var x = centerX + radius * Math.sin(currentAngle * Math.PI/180);
       var y = centerY + radius * Math.cos(currentAngle * Math.PI/180);
-      window.dancers[i].setPosition(x,y);
+      lineUpDancers[i].setPosition(x,y);
       currentAngle+=angleStep;
     }
   });
@@ -64,11 +66,16 @@ $(document).on("click",".lineUpButton", function(event) {
 
   $( document ).click(function() {
   $( ".water" ).animate({
-    opacity: 0.25,
-    top: "+=100",
-    height: "toggle"
+    opacity: 1,
+    top: "-=100",
+    height: "+=100"
   }, 5000, function() {
     // Animation complete.
+    $( ".water" ).animate({
+    opacity: 0,
+    top: "+=100",
+    height: "-=100"
+  }, 5000);
   });
 });
 
