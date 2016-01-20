@@ -1,7 +1,6 @@
 var SpongeBob = function(top, left, timeBetweenSteps) {
   Dancer.call(this, top, left, timeBetweenSteps);
-    this.$node.addClass("water");
-
+  this.$node.addClass("spongeBob");
 };
 
 SpongeBob.prototype = Object.create(Dancer.prototype);
