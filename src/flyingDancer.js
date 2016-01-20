@@ -1,7 +1,6 @@
 var FlyingDancer = function(top, left, timeBetweenSteps) {
   Dancer.call(this, top, left, timeBetweenSteps);
-      this.$node.addClass("fox");
-
+  this.$node.addClass("fox").addClass("collider").addClass("obstacle");
 };
 
 FlyingDancer.prototype = Object.create(Dancer.prototype);
@@ -18,3 +17,4 @@ FlyingDancer.prototype.step = function() {
 		left: left
 	}, 5000);
 };
+

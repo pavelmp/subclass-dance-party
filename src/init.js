@@ -6,15 +6,34 @@ $(document).ready(function() {
   window.centerX = $(window).width()*0.15;
   window.spongeBob = null;
 
+  window.showOverlap = function(){
+    return function(){
+      var foxes = window.dancers.filter(function(v){return v instanceof FlyingDancer;});
+
+      for(var i=0;i<foxes.length;i++){
+        var thisFox = foxes[i].$node.offset();
+        for(var j=0;j<foxes.length;j++){
+          if(j !== i){
+            var otherFox = foxes[j].$node.offset();
+            if(Math.abs(thisFox.left-otherFox.left)<=30 && Math.abs(thisFox.top-otherFox.top)<=30){
+              foxes[i].$node.hide();
+              foxes[j].$node.hide();
+            }
+          }
+        }  
+      }
+    window.setTimeout(window.showOverlap(),25);      
+    };  
+  };
+
+  window.setTimeout(window.showOverlap(),25);
+
+
   if(!window.waterCalled) {
         window.waterCalled = true;
 
     var waterWindow = window['WaterDancer'];
-    var water = new waterWindow(
-      $("body").height()/2-160,
-      $("body").width()/2-200, 
-      0
-    );
+    var water = new waterWindow($("body").height()/2-160,$("body").width()/2-200, 0);
     $('body').append(water.$node);
 
     window.water = water; 
@@ -58,7 +77,7 @@ $(document).ready(function() {
         window.spongeBobCount++;
       }
       
-      var top = Math.min($("body").height()-155,$("body").height() * Math.random());
+      var top = Math.min($("body").height()-150,$("body").height()*(1-0.70 * Math.random()));//Math.min($("body").height()*2-155,$("body").height()*2 * Math.random());
       var left = Math.min($("body").width()-100,$("body").width() * Math.random());
 
        var duration = dancerMakerFunctionName == 'FlyingDancer' ? 5000 : Math.random() * 1000;
